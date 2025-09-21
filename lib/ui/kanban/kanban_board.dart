@@ -11,14 +11,16 @@ class KanbanBoard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Consumer<KanbanProvider>(
-      builder: (context, Provider, child) {
-        final status = Provider.kanbanStatus;
+      builder: (context, provider, child) {
+        final status = provider.kanbanStatus;
         return ShadTabs(
           value: status,
+          expandContent: true,
+          contentConstraints: BoxConstraints.expand(height: 0),
           tabs: KanbanStatus.values
               .map(
                 (e) => ShadTab(
-                  value: e,
+                  value: e, //
                   content: KanbanList(status: e),
                   child: Text(e.label),
                 ),
