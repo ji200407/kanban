@@ -36,5 +36,29 @@ extension KanbanStatusExtensions on KanbanStatus {
 }
 
 class KanbanUtil {
-  static KanbanStatus stringToStatus(String value) {}
+  static KanbanStatus stringToStatus(String value) {
+    //1번째 if else 사용
+    //   KanbanStatus status;
+    //   if (value == KanbanStatus.todo) {
+    //     status = KanbanStatus.todo;
+    //   } else if (value == 'progress') {
+    //     status = KanbanStatus.progress;
+    //   } else if(value=='done'){
+    //     status = KanbanStatus.done;
+    //   }else{
+    //     status=KanbanStatus.todo;
+    //   }
+    //   return status;
+    //2번째 Switch-case
+    // return switch(value){
+    //   'progress'=>KanbanStatus.progress,
+    //   'done'=>KanbanStatus.done,
+    //   _=>KanbanStatus.todo
+    // };
+    //3번째 다른데서도 쓸수잇음 코틀린
+    return KanbanStatus.values.firstWhere(
+      (e) => e.name == value,
+      orElse: () => KanbanStatus.todo,
+    );
+  }
 }
